@@ -1,2 +1,2 @@
 # WebAppClienteBioclean
-Web para leer
+Web para leer QR
