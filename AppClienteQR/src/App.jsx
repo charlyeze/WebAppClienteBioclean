@@ -4,10 +4,12 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import columns from "./data/columns";
 import barreras from "./data/barreras";
+import data from "./data/mock.json";
+
 // Ejemplo lectura Qr
 // Razon Social - id cliente - nombre barrera - numero estacion - cantidad estacion
 //CLIENTE PRUEBA|63e2ee7d2de3de451532a660|barrera1|1|3
-const resultScan = "CLIENTE PRUEBA|63e2ee7d2de3de451532a660|barreraluz5|1|5";
+const resultScan = "CLIENTE PRUEBA|63e2ee7d2de3de451532a660|barrera1|1|5";
 
 function App() {
   const result = resultScan.split('|'); // separa en array
@@ -15,6 +17,12 @@ function App() {
   const estacion = result[3];
   const tableColumns = columns[barrera];
   console.log('tableColumns', tableColumns);
+  console.log('data', data);
+  const columnNov = tableColumns[1].property;
+  console.log('columnN', columnNov)
+  const fisrt = data.docs[0];
+  console.log('fecha', fisrt.fecha);
+  console.log('nov', fisrt[columnNov]);
   
   return (
     <>
