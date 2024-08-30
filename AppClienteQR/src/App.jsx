@@ -32,7 +32,7 @@ function App() {
 
   const getValue = (type, value) => {
     if (type === "Boolean") {
-      return value ? "SI" : "NO";
+      return value ? '✅' : '⛔';
     }
     if (type === "Date") {
       return formatoFecha(value);
@@ -42,14 +42,14 @@ function App() {
 
   return (
     <>
-      <div className="table-responsive card border-success mb-3">
-        <h4 className="card-body bg-transparent border-success text-success">{barreras[barrera]}</h4>
-        <h5 className="m-1">Estación N° {estacion}</h5>
+      <div className="table-responsive card border-primary m-1">
+        <h4 className="card-header bg-transparent border-primary text-uppercase" style={{color:"rgb(135, 208, 2)"}}>{barreras[barrera]}</h4>
+        <h5 className="p-2">Estación N° {estacion}</h5>
         <table className="table text-center table-striped">
           <thead>
             <tr>
               {tableColumns.map((column) => (
-                <th key={column.propierty}>
+                <th key={column.property}>
                   <span className="text-secondary">{column.name}</span>
                 </th>
               ))}
@@ -73,7 +73,7 @@ function App() {
       <div/>
       <div className="pe-4">
         <nav aria-label="Page navigation example">
-          <ul className="pagination justify-content-end">
+          <ul className="pagination justify-content-end ">
             <li className="page-item disabled">
               <a className="page-link" href="#" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>

@@ -6,16 +6,16 @@ const commonsBarreras = [
 const commonsBarrerasLuz = [
   { name: "Fecha", property: "fecha", type: "Date" },
   { name: "Controlado", property: "controlado", type: "Boolean" },
-  { name: "Cambio Placa", property: "cambio_placa", type: "Boolean" },
+  { name: "Cam./Placa", property: "cambio_placa", type: "Boolean" },
   { name: "Verificación", property: "verificacion", type: "Boolean" },
-  { name: "Equipo Apagado", property: "equipo_apagado", type: "Boolean" },
+  { name: "Eq./Apagado", property: "equipo_apagado", type: "Boolean" },
 ];
 
 const commonsExtraLuz = [
-  { name: "Mosca Domestica", property: "mosca_domestica", type: "Number" },
-  { name: "Mosca Carne", property: "mosca_carne", type: "Number" },
-  { name: "Mosca Fruta", property: "mosca_fruta", type: "Number" },
-  { name: "Mosca Humedad", property: "mosca_humedad", type: "Number" },
+  { name: "M.Domestica", property: "mosca_domestica", type: "Number" },
+  { name: "M.Carne", property: "mosca_carne", type: "Number" },
+  { name: "M.Fruta", property: "mosca_fruta", type: "Number" },
+  { name: "M.Humedad", property: "mosca_humedad", type: "Number" },
   { name: "Mosquito", property: "mosquito", type: "Number" },
 ];
 
@@ -31,7 +31,7 @@ const columns = {
   ]),
   barreraluz2: commonsBarrerasLuz.concat(commonsExtraLuz, [
     { name: "Polilla", property: "polilla", type: "Number" },
-    { name: "Insecto Ambiente", property: "insecto_ambiente", type: "Number" },
+    { name: "Insecto/Ambiente", property: "insecto_ambiente", type: "Number" },
   ]),
   barreraluz3: commonsBarrerasLuz.concat(commonsExtraLuz, [
     { name: "Polilla", property: "polilla", type: "Number" },
