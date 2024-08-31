@@ -4,16 +4,19 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import columns from "./data/columns";
 import barreras from "./data/barreras";
-import data from "./data/mock2.json";
-import { formatoFecha } from "./utilities/functions";
+import { capitalizarPrimeraLetra, formatoFecha } from "./utilities/functions";
+import useAxios from "./hooks/useAxios";
+import { useEffect } from "react";
 
 // Ejemplo lectura Qr
 // Razon Social - id cliente - nombre barrera - numero estacion - cantidad estacion
-//CLIENTE PRUEBA|63e2ee7d2de3de451532a660|barrera1|1|3
-const resultScan = "CLIENTE PRUEBA|63e2ee7d2de3de451532a660|barreraluz2|1|5";
+const resultScan =
+  "MOLINO CAÑUELAS RIO CUARTO|61e802bdb505940285fc73d5|barrera3|25|25";
 
 function App() {
+  const { data, makeQuery } = useAxios();
   const result = resultScan.split("|"); // separa en array
+  const idCliente = result[1];
   const barrera = result[2];
   const estacion = result[3];
   const tableColumns = columns[barrera];
@@ -22,6 +25,10 @@ function App() {
     if (type === "Boolean") {
       return value ? "text-success" : "text-danger";
     }
+    return;
+  };
+
+  const getClassSpan = (type, value) => {
     if (type === "String") {
       return value == "S/N"
         ? "badge text-bg-secondary"
@@ -32,7 +39,7 @@ function App() {
 
   const getValue = (type, value) => {
     if (type === "Boolean") {
-      return value ? '✅' : '⛔';
+      return value ? "✅" : "⛔";
     }
     if (type === "Date") {
       return formatoFecha(value);
@@ -40,10 +47,23 @@ function App() {
     return value;
   };
 
+  useEffect(() => {
+    makeQuery({
+      url: capitalizarPrimeraLetra(barrera),
+      nBar: estacion,
+      idCli: idCliente,
+    });
+  }, []);
+
   return (
     <>
       <div className="table-responsive card border-primary m-1">
-        <h4 className="card-header bg-transparent border-primary text-uppercase" style={{color:"rgb(135, 208, 2)"}}>{barreras[barrera]}</h4>
+        <h4
+          className="card-header bg-transparent border-primary text-uppercase"
+          style={{ color: "rgb(135, 208, 2)" }}
+        >
+          {barreras[barrera]}
+        </h4>
         <h5 className="p-2">Estación N° {estacion}</h5>
         <table className="table text-center table-striped">
           <thead>
@@ -56,13 +76,18 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {data.docs.map((row, indexRow) => (
+            {data?.docs.map((row, indexRow) => (
               <tr key={indexRow}>
                 {tableColumns.map((column, indexColumn) => (
                   <td
                     className={getClass(column.type, row[column.property])}
-                    key={indexColumn}>
-                    <span>{getValue(column.type, row[column.property])}</span>
+                    key={indexColumn}
+                  >
+                    <span
+                      className={getClassSpan(column.type, row[column.property])}
+                    >
+                      {getValue(column.type, row[column.property])}
+                    </span>
                   </td>
                 ))}
               </tr>
@@ -70,7 +95,7 @@ function App() {
           </tbody>
         </table>
       </div>
-      <div/>
+      <div />
       <div className="pe-4">
         <nav aria-label="Page navigation example">
           <ul className="pagination justify-content-end ">

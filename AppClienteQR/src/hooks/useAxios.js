@@ -15,12 +15,12 @@ const useAxios = () => {
 
       const config = {
         method: "get",
-        url: `${ROOT_URL}/${url}?find={"n_bar":${nBar}, "id_cli": "${idCli}"}`,
+        url: `${ROOT_URL}/${url}?isNotAuth=${true}&find={"n_bar":${nBar}, "id_cli": "${idCli}"}`,
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjoiZGV2ZWxvcCIsInVzZXJJZCI6IjYzNTViZThlMGJlYzkzMDRlZGU1NzMyNSIsImlhdCI6MTcyMjIxNjAxNCwiZXhwIjoxNzUzNzUyMDE0fQ.yf68lMmQFgqqqv_b4jEz-ZfwjkGLzPltnLBx4Rbkl9Q`,
         },
       };
+      console.log('config', config)
 
       const result = await axios(config);
 
