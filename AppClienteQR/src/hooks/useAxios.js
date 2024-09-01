@@ -20,7 +20,6 @@ const useAxios = () => {
           "Content-Type": "application/json",
         },
       };
-      console.log('config', config)
 
       const result = await axios(config);
 
