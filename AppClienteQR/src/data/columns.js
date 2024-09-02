@@ -1,5 +1,5 @@
 const commonsBarreras = [
-  { name: "Fecha", property: "fecha", type: "Date" },
+  { name: "Fecha", property: "fecha", type: "Date"},
   { name: "Novedad", property: "nov_1", type: "String" },
 ];
 

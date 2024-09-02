@@ -36,39 +36,48 @@ const Tabla = ({ data, result }) => {
 
   return (
     <div className="card m-3 shadow">
-      <h2 className="p-2 text-uppercase">
-        <span className="badge text-bg-success ms-1 float-end">{barreras[barrera]}</span>
+      <h2 className="card-header p-2 text-uppercase">
+        <span className="badge text-bg-success ms-1 float-end">
+          {barreras[barrera]}
+        </span>
       </h2>
-      <h5 className="p-2">Estación N° {estacion}</h5>
-      <table className="table text-center table-striped">
-        <thead>
-          <tr>
-            {tableColumns.map((column) => (
-              <th key={column.property}>
-                <span className="text-secondary">{column.name}</span>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {data?.docs.map((row, indexRow) => (
-            <tr key={indexRow}>
-              {tableColumns.map((column, indexColumn) => (
-                <td
-                  className={getClass(column.type, row[column.property])}
-                  key={indexColumn}
-                >
-                  <span
-                    className={getClassSpan(column.type, row[column.property])}
-                  >
-                    {getValue(column.type, row[column.property])}
-                  </span>
-                </td>
+      <h5 className="p-1">Estación N° {estacion}</h5>
+      <div className="card-body">
+        <div className="table-container">
+          <table className="table text-center table-striped">
+            <thead>
+              <tr>
+                {tableColumns.map((column) => (
+                  <th key={column.property}>
+                    <span className="text-secondary">{column.name}</span>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {data?.docs.map((row, indexRow) => (
+                <tr key={indexRow}>
+                  {tableColumns.map((column, indexColumn) => (
+                    <td
+                      className={getClass(column.type, row[column.property])}
+                      key={indexColumn}
+                    >
+                      <span
+                        className={getClassSpan(
+                          column.type,
+                          row[column.property]
+                        )}
+                      >
+                        {getValue(column.type, row[column.property])}
+                      </span>
+                    </td>
+                  ))}
+                </tr>
               ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };
