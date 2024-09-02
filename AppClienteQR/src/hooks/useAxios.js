@@ -8,7 +8,7 @@ const useAxios = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const makeQuery = async ({ url, nBar, idCli }) => {
+  const makeQuery = async ({ url, nBar, idCli, params }) => {
     try {
       setLoading(true);
       setData(null);
@@ -19,6 +19,7 @@ const useAxios = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        params,
       };
 
       const result = await axios(config);

@@ -10,6 +10,7 @@ import useAxios from "./hooks/useAxios";
 import ScanQr from "./components/scan";
 import Tabla from "./components/tabla";
 import ButtonScan from "./components/button";
+import Pagination from "./components/pagination";
 
 // Ejemplo lectura Qr
 // Razon Social - id cliente - nombre barrera - numero estacion - cantidad estacion
@@ -20,9 +21,19 @@ function App() {
   const [scanResult, setScanResult] = useState();
   const [result, setResult] = useState();
   const { data, makeQuery } = useAxios();
+
   const onClick = () => {
     setResult(undefined);
     setScanResult(undefined);
+  };
+  const getIsResult = () => scanResult && data && result;
+  const handlerSelectPage = (pageCurrent) => {
+    makeQuery({
+      url: capitalizarPrimeraLetra(result.barrera),
+      nBar: result.estacion,
+      idCli: result.idCliente,
+      params: { page: pageCurrent },
+    });
   };
 
   const getResult = (scanResult) => {
@@ -48,11 +59,13 @@ function App() {
     if (scanResult) getResult(scanResult);
   }, [scanResult]);
 
+
   return (
     <>
-      {(scanResult && data) && <ButtonScan onClick={onClick} />}
+      {scanResult && data && <ButtonScan onClick={onClick} />}
       {!scanResult && <ScanQr setScanResult={setScanResult} />}
-      {(scanResult && data && result) && <Tabla result={result} data={data} />}
+      {getIsResult() && <Tabla result={result} data={data} />}
+      {getIsResult() && <Pagination selectPage={handlerSelectPage} {...data} />}
     </>
   );
 }

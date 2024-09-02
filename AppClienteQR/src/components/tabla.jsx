@@ -37,7 +37,7 @@ const Tabla = ({ data, result }) => {
   return (
     <div className="card m-3 shadow">
       <h2 className="p-2 text-uppercase">
-        <span className="badge text-bg-primary ms-1">{barreras[barrera]}</span>
+        <span className="badge text-bg-success ms-1 float-end">{barreras[barrera]}</span>
       </h2>
       <h5 className="p-2">Estación N° {estacion}</h5>
       <table className="table text-center table-striped">
