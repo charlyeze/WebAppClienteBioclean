@@ -43,7 +43,7 @@ const Tabla = ({ data, result }) => {
       </h2>
       <h5 className="p-1">Estación N° {estacion}</h5>
       <div className="card-body">
-        <div className="table-container">
+        <div className="table-container ">
           <table className="table text-center table-striped">
             <thead>
               <tr>

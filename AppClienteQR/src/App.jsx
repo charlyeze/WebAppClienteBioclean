@@ -11,16 +11,16 @@ import ScanQr from "./components/scan";
 import Tabla from "./components/tabla";
 import ButtonScan from "./components/button";
 import Pagination from "./components/pagination";
+import Loading from "./components/loading";
 
 // Ejemplo lectura Qr
 // Razon Social - id cliente - nombre barrera - numero estacion - cantidad estacion
-// const resultScan ="MOLINO CAÑUELAS RIO CUARTO|61e802bdb505940285fc73d5|barrera3|25|25";
 // const resultScan = "PROMAIZ SA|61e7f7fdb505940285fc73b9|barrera1|2|51";
 
 function App() {
   const [scanResult, setScanResult] = useState();
   const [result, setResult] = useState();
-  const { data, makeQuery } = useAxios();
+  const { data, loading, makeQuery } = useAxios();
 
   const onClick = () => {
     setResult(undefined);
@@ -63,6 +63,7 @@ function App() {
   return (
     <>
       {scanResult && data && <ButtonScan onClick={onClick} />}
+      {loading && <Loading/>}
       {!scanResult && <ScanQr setScanResult={setScanResult} />}
       {getIsResult() && <Tabla result={result} data={data} />}
       {getIsResult() && <Pagination selectPage={handlerSelectPage} {...data} />}
