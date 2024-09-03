@@ -5,14 +5,10 @@ import { Scanner } from "@yudiel/react-qr-scanner";
 const ScanQr = ({ setScanResult }) => {
   const onScan = (result) => result[0] && setScanResult(result[0]?.rawValue);
   return (
-    <>
-      <Scanner onScan={onScan} />
-      <img
-        className="w-50 img-fluid position-absolute top-50 start-50 translate-middle"
-        src="/logo.png"
-        alt="Bioclean"
-      ></img>
-    </>
+      <div className="card">
+          <Scanner onScan={onScan} />
+        <img src="/logo.png" className="card-img-bottom" alt="Bioclean"></img>
+      </div>
   );
 };
 
