@@ -15,7 +15,7 @@ const useAxios = () => {
 
       const config = {
         method: "get",
-        url: `${ROOT_URL}/${url}?isNotAuth=${true}&find={"n_bar":${nBar}, "id_cli": "${idCli}"}`,
+        url: `${ROOT_URL}/${url}?isNotAuth=${true}&find={"n_bar":${nBar}, "id_cli": "${idCli}"}&sort={"fecha":-1}`,
         headers: {
           "Content-Type": "application/json",
         },

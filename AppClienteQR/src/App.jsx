@@ -32,7 +32,9 @@ function App() {
       url: capitalizarPrimeraLetra(result.barrera),
       nBar: result.estacion,
       idCli: result.idCliente,
-      params: { page: pageCurrent },
+      params: {
+        page: pageCurrent,
+      },
     });
   };
 
@@ -59,19 +61,20 @@ function App() {
     if (scanResult) getResult(scanResult);
   }, [scanResult]);
 
-
   return (
     <>
       {scanResult && data && <ButtonScan onClick={onClick} />}
-      {loading && <Loading/>}
+      {loading && <Loading />}
       {!scanResult && <ScanQr setScanResult={setScanResult} />}
       {getIsResult() && <Tabla result={result} data={data} />}
       {getIsResult() && <Pagination selectPage={handlerSelectPage} {...data} />}
-      {!scanResult && <img
-        src="./assets/logo.png"
-        className="pt-2 w-50 float-end"
-        alt="Bioclean"
-      ></img>}
+      {!scanResult && (
+        <img
+          src="./assets/logo.png"
+          className="pt-2 w-50 float-end"
+          alt="Bioclean"
+        ></img>
+      )}
     </>
   );
 }
